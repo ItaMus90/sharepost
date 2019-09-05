@@ -11,13 +11,13 @@ class Pages {
 
     public function index(){
 
-
+        echo "Method Index ";
 
     }
 
-    public function about($id) {
+    public function about($id = array()) {
 
-        echo "Method About " . $id;
+        echo "Method About ";
 
     }
 

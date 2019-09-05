@@ -85,12 +85,24 @@ class Core{
 
         }
 
+        //Check if method is public or not
+        if ($this->checkAccessModifierMethod($this->current_method)){
 
-        //Get params
-        $this->params = $path ? array_values($path) : array();
+            //Get params
+            $this->params = $path ? array_values($path) : array();
 
-        //Call a callback with array of params array(obj_class, method_class), params of url
-        call_user_func_array(array($this->current_controller, $this->current_method), $this->params);
+            //Call a callback with array of params array(obj_class, method_class), params of url
+            call_user_func_array(array($this->current_controller, $this->current_method), $this->params);
+
+        }else {
+
+            //Get params
+            $this->params = array();
+
+            //Call a callback with array of params array(obj_class, method_class), params of url
+            call_user_func_array(array($this->current_controller, "index"), $this->params);
+
+        }
 
 
     }
@@ -104,6 +116,25 @@ class Core{
     private function instantiateControllerClass(){
 
         $this->current_controller = new $this->current_controller;
+
+    }
+
+    private function checkAccessModifierMethod($method){
+
+        $reflection = new ReflectionMethod($this->current_controller, $method);
+
+        if ($reflection->isPublic()){
+
+            return true;
+
+        }
+
+        if ($reflection->isProtected() || $reflection->isPrivate()){
+
+            return false;
+
+        }
+
 
     }
 
