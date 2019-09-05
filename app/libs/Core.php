@@ -19,7 +19,10 @@ class Core{
         $url = $this->getUrl();
 
         //Look in controllers for first value
-        $this->checkIfFileExist($url);
+        $this->checkIfFileExists($url);
+
+        //Check for second part of url
+        $this->checkIfMethodExists($url);
 
     }
 
@@ -44,7 +47,7 @@ class Core{
     }
 
 
-    private function checkIfFileExist($path){
+    private function checkIfFileExists(&$path){
 
         $full_path = "../app/controllers/" . ucwords($path[0]) . ".php";
 
@@ -63,6 +66,32 @@ class Core{
 
         //Instantiate controller class
         $this->instantiateControllerClass();
+
+    }
+
+    private function checkIfMethodExists(&$path){
+
+        if (isset($path[1])){
+
+            //Check to see if method exists in controller
+            if (method_exists($this->current_controller, $path[1])){
+
+                $this->current_method = $path[1];
+
+                //Unset index 1
+                unset($path[1]);
+
+            }
+
+        }
+
+
+        //Get params
+        $this->params = $path ? array_values($path) : array();
+
+        //Call a callback with array of params array(obj_class, method_class), params of url
+        call_user_func_array(array($this->current_controller, $this->current_method), $this->params);
+
 
     }
 
