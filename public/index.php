@@ -1,3 +1,6 @@
 <?php
 
-echo "Hello World";
+    require_once "../app/init.php";
+
+    //Init Core libs
+    $init = new Core;
