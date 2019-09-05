@@ -1,7 +1,7 @@
 <?php
 
 
-class Pages {
+class Pages extends BaseController {
 
 
     public function __construct(){
