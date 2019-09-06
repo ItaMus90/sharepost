@@ -1,6 +1,12 @@
 <?php
 
-//Load Libs
-require_once "libs/Core.php";
-require_once "libs/BaseController.php";
-require_once "libs/Db.php";
+    //Load Config
+    require_once "config/config.php";
+
+
+    //Autoload Core Libs
+    spl_autoload_register(function($class_name){
+
+        require_once "libs/". $class_name .".php";
+
+    });
