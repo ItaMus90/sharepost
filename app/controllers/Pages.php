@@ -11,13 +11,14 @@ class Pages extends BaseController {
 
     public function index(){
 
-        echo "Method Index ";
+        $data = array("title" => "data from index method");
+        $this->view("pages/index", $data);
 
     }
 
-    public function about($id = array()) {
+    public function about() {
 
-        echo "Method About ";
+        $this->view("pages/about");
 
     }
 
