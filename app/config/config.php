@@ -1,5 +1,14 @@
 <?php
 
+    //DB params
+    define("DB_HOST", "localhost");
+    define("DB_USERNAME", "root");
+    define("DB_PASSWORD", "");
+    define("DB_SCHEME", "test_v1");
+
+    //Separator for unix and window
+    define("DS", DIRECTORY_SEPARATOR);
+
     //APP ROOT
     define("APP_ROOT" ,dirname(dirname(__FILE__)));
 

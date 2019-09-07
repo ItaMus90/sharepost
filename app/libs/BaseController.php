@@ -7,6 +7,16 @@
  */
 
 class BaseController {
+    protected $db = null;
+
+    protected function db_connect(){
+
+        $db = new Db();
+
+        //return Query
+        return $db->connect();
+
+    }
 
     //Load Modal
     public function model($model){
