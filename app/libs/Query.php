@@ -4,10 +4,51 @@
 class Query{
 
     private $conn;
+    private $stmt;
     public $is_connected = true;
     public $is_fetch_assoc = true;
     public $error;
     public $errno;
+
+    protected function bind($param, $value, $type = null){
+
+
+        if (is_null($type)){
+
+            switch (true){
+
+                case is_integer($value):
+
+                    $type = "i";
+                    break;
+
+                case is_bool($value):
+
+                    $type = "b";
+                    break;
+
+                case is_double($value):
+
+                    $type = "d";
+                    break;
+
+                case is_null($value):
+
+                    $type = null;
+                    break;
+
+                default:
+
+                    $type = "s";
+
+            }
+
+        }
+
+
+
+    }
+
 
     public function __construct($host, $username, $password, $scheme, $port = 3306){
 
@@ -27,6 +68,54 @@ class Query{
             $this->conn = $conn;
 
         }
+
+    }
+
+    /*
+     * $sql need to be with placeholders ?
+     * example
+     * SELECT * FROM users WHERE user_id = ?
+     *
+     * $assoc_key = array()
+     * need to be key and values of the value and type
+     * 0 => "ss"
+     * 1 => ["dani" ,"di"]
+     */
+    public function prepare_statement_query($sql, $arr_type_values = array()){
+
+        $results = null;
+
+        //Create a prepared statement
+        $this->stmt = mysqli_stmt_init($this->conn);
+
+        //Prepare the prepared statement
+        if (!mysqli_stmt_prepare($this->stmt, $sql)){
+
+            die("SQL statement failed");
+
+        }else {
+
+            //$values = "'".implode("','", $arr_type_values[1])."'";
+
+            //Bind parameters to the placeholders
+            if (!isset($arr_type_values[0]) || !isset($arr_type_values[1])){
+
+
+            }else{
+
+                mysqli_stmt_bind_param($this->stmt, $arr_type_values[0], ...$arr_type_values[1]);
+
+            }
+
+            //Run parameters inside database
+            mysqli_stmt_execute($this->stmt);
+
+            $results = mysqli_stmt_get_result($this->stmt);
+
+        }
+
+        $results = mysqli_fetch_all($results, MYSQLI_ASSOC);
+        return $results;
 
     }
 
@@ -121,6 +210,14 @@ class Query{
     public function q($sql, $assoc_key = array()){
 
         return $this->conn->query($sql, $assoc_key);
+
+    }
+
+    public function escape_string($str){
+
+        $esacped_str = $this->conn->real_escape_string($str);
+
+        return $esacped_str;
 
     }
 
