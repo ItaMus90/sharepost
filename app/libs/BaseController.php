@@ -13,6 +13,8 @@ class BaseController {
 
         $db = new Db();
 
+        $this->db = $db->connect();
+
         //return Query
         return $db->connect();
 
@@ -48,5 +50,7 @@ class BaseController {
         }
 
     }
+
+
 
 }
