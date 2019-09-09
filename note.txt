@@ -1,0 +1,5 @@
+1)
+    instead to send value $data to view you can use echo json
+    header('Content-type: application/json');
+            echo json_encode($options);
+            die();
