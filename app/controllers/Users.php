@@ -31,7 +31,7 @@ class Users extends  BaseController {
                 "name_err"             => "",
                 "email_err"            => "",
                 "password_err"         => "",
-                "confirm_password_err" => "",
+                "confirm_password_err" => ""
             );
 
 
@@ -41,4 +41,30 @@ class Users extends  BaseController {
         }
 
     }
+
+    public function login(){
+
+        //Check for POST
+        if ($_SERVER["REQUEST_METHOD"] == "POST"){
+
+            //Process Form
+
+        }else {
+
+            //Init data
+            $data = array(
+                "email"                => "",
+                "password"             => "",
+                "email_err"            => "",
+                "password_err"         => "",
+            );
+
+
+            //Load Views
+            $this->view('users/login', $data);
+
+        }
+
+    }
+
 }
