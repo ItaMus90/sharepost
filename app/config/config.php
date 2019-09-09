@@ -17,3 +17,6 @@
 
     //SITE NAME
     define("SITE_NAME", "shareposts");
+
+    //APP VERSION
+    define("APP_VERSION", "1.0.0");
