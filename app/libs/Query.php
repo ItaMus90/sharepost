@@ -83,7 +83,7 @@ class Query{
      */
     public function prepare_statement_query($sql, $arr_type_values = array()){
 
-        $results = null;
+        $results = false;
 
         //Create a prepared statement
         $this->stmt = mysqli_stmt_init($this->conn);
@@ -100,6 +100,7 @@ class Query{
             //Bind parameters to the placeholders
             if (!isset($arr_type_values[0]) || !isset($arr_type_values[1])){
 
+                //missing values in array
 
             }else{
 
@@ -114,11 +115,16 @@ class Query{
 
         }
 
-        $results = mysqli_fetch_all($results, MYSQLI_ASSOC);
         return $results;
 
     }
 
+    //get asoc array from mysqli_stmt_get_result
+    public function get_assoc_arr($result){
+
+        return mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    }
 
     public function query($sql , $assoc_key = array()){
 
@@ -213,6 +219,7 @@ class Query{
 
     }
 
+
     public function escape_string($str){
 
         $esacped_str = $this->conn->real_escape_string($str);
@@ -220,6 +227,7 @@ class Query{
         return $esacped_str;
 
     }
+
 
     public function close(){
 

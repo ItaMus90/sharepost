@@ -3,11 +3,14 @@
 
 class Users extends  BaseController {
 
-
+    protected $user;
 
 
     public function __construct(){
 
+       $this->user = $this->model('User');
+
+//       $x = $user->find_user_by_email("test@test.com");
 
 
     }
@@ -42,6 +45,17 @@ class Users extends  BaseController {
             if (empty($data["email"])){
 
                 $data["email_err"] = "Please enter valid email";
+
+            }else {
+
+                //check for email
+                $email = $data["email"];
+
+                if ($this->user->find_user_by_email($email)){
+
+                    $data["email_err"] = "Email is already taken";
+
+                }
 
             }
 
