@@ -101,6 +101,8 @@ class Users extends  BaseController {
                 //Register user
                 $this->user->register($data);
 
+                flash("register_success", "You are registered and can log in.");
+
                 $page = "/users/login";
 
                 redirect($page);
