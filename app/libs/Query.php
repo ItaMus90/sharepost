@@ -101,6 +101,7 @@ class Query{
             if (!isset($arr_type_values[0]) || !isset($arr_type_values[1])){
 
                 //missing values in array
+                return false;
 
             }else{
 

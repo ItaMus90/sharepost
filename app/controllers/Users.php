@@ -95,8 +95,15 @@ class Users extends  BaseController {
             //Make sure errors are empty
             if (empty($data["name_err"]) && empty($data["email_err"]) && empty($data["password_err"]) && empty($data["confirm_password_err"])){
 
-                //Validate
-                die("Success");
+                //Hash password
+                $data["password"] = password_hash($data["password"], PASSWORD_DEFAULT);
+
+                //Register user
+                $this->user->register($data);
+
+                $page = "/users/login";
+
+                redirect($page);
 
             }else{
 
