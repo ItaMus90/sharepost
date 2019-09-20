@@ -137,7 +137,6 @@ class Users extends  BaseController {
 
     }
 
-
     public function login(){
 
         //Check for POST
@@ -203,9 +202,8 @@ class Users extends  BaseController {
 
                 if ($logged_in_user){
 
-                    //Create Session
-                    print_r($logged_in_user);
-                    die();
+                    //Create session
+                    $this->create_session_user($logged_in_user);
 
                 }else {
 
@@ -237,6 +235,35 @@ class Users extends  BaseController {
             $this->view('users/login', $data);
 
         }
+
+    }
+
+    public function logout(){
+
+        unset($_SESSION["user_id"]);
+        unset($_SESSION["user_email"]);
+        unset($_SESSION["user_name"]);
+
+        session_destroy();
+
+
+        redirect("users/login");
+
+    }
+
+    public function create_session_user($user){
+
+        $_SESSION["user_id"] = $user["id"];
+        $_SESSION["user_email"]   = $user["email"];
+        $_SESSION["user_name"]    = $user["name"];
+
+        redirect("pages/index");
+
+    }
+
+    public function is_logged_in(){
+
+        return isset($_SESSION["user_id"]) ? true : false;
 
     }
 
