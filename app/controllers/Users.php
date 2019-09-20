@@ -137,6 +137,7 @@ class Users extends  BaseController {
 
     }
 
+
     public function login(){
 
         //Check for POST
@@ -178,12 +179,41 @@ class Users extends  BaseController {
             }
 
 
+            //Check for user/email
+            if ($this->user->find_user_by_email($data["email"])){
+
+                //User found
+
+            }else {
+
+                //User not found
+                $data["email_err"] = "No user found";
+
+            }
+
+
 
             //Make sure errors are empty
             if (empty($data["email_err"]) && empty($data["password_err"])){
 
                 //Validate
-                die("Success");
+                //Check and set logged in user
+                $logged_in_user = $this->user->login($data["email"], $data["password"]);
+
+
+                if ($logged_in_user){
+
+                    //Create Session
+                    print_r($logged_in_user);
+                    die();
+
+                }else {
+
+                    $data["password_err"] = "Password incorrect";
+
+                    $this->view("users/login", $data);
+
+                }
 
             }else{
 

@@ -15,6 +15,43 @@ class User {
     }
 
 
+    //Login user
+    public function login($email, $password){
+
+        if (empty($email) || empty($password))
+            return false;
+
+        $arr = [
+            "s", [$email]
+        ];
+
+        $sql = "SELECT * FROM users WHERE email=? LIMIT 1";
+
+        $result = $this->db->prepare_statement_query($sql, $arr);
+
+        if ($result->num_rows > 0) {
+
+            $user = $this->db->get_assoc_arr($result);
+
+            $hashed_password = $user[0]["password"];
+
+            if (password_verify($password, $hashed_password)){
+
+                return $user[0];
+
+            }else{
+
+                return false;
+            }
+
+        }
+
+
+        return false;
+
+    }
+
+
     //Find user by email
     public function find_user_by_email($email){
 
