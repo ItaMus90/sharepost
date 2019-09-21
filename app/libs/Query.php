@@ -81,7 +81,7 @@ class Query{
      * 0 => "ss"
      * 1 => ["dani" ,"di"]
      */
-    public function prepare_statement_query($sql, $arr_type_values = array()){
+    public function prepare_statement_query($sql,$arr_type_values = array(), $bind_params = true){
 
         $results = false;
 
@@ -98,12 +98,16 @@ class Query{
             //$values = "'".implode("','", $arr_type_values[1])."'";
 
             //Bind parameters to the placeholders
-            if (!isset($arr_type_values[0]) || !isset($arr_type_values[1])){
+            if ((!isset($arr_type_values[0]) || !isset($arr_type_values[1])) && $bind_params){
 
                 //missing values in array
                 return false;
 
-            }else{
+            }elseif (!$bind_params){
+
+                //No params to bind
+
+            } else{
 
                 mysqli_stmt_bind_param($this->stmt, $arr_type_values[0], ...$arr_type_values[1]);
 

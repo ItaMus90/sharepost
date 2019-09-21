@@ -4,7 +4,7 @@
 
 class Posts extends BaseController {
 
-
+    protected $post = null;
 
     public function __construct(){
 
@@ -15,12 +15,19 @@ class Posts extends BaseController {
 
         }
 
+        $this->post = $this->model("Post");
+
     }
 
 
     public function index(){
 
-        $data = array();
+        //Get posts
+        $posts = $this->post->get_posts();
+
+        $data = array(
+            "posts" => $posts
+        );
 
         $this->view("posts/index", $data);
 
