@@ -8,6 +8,12 @@ class Posts extends BaseController {
 
     public function __construct(){
 
+        //If user not login
+        if (!is_logged_in()){
+
+            redirect("users/login");
+
+        }
 
     }
 
@@ -19,5 +25,8 @@ class Posts extends BaseController {
         $this->view("posts/index", $data);
 
     }
+
+
+
 
 }
