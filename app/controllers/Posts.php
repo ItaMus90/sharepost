@@ -34,6 +34,16 @@ class Posts extends BaseController {
     }
 
 
+    public function add(){
+
+        $data = array(
+            "title" => '',
+            "body" => ''
+        );
+
+        $this->view('posts/add', $data);
+
+    }
 
 
 }

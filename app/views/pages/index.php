@@ -4,10 +4,15 @@
 
     <div class="container">
 
-        <h1 class="display-3">Hello</h1>
-        <p class="lead">
-            <?php print_r($data); ?>
-        </p>
+        <div class="card card-body md-3">
+
+            <h4 class="card-title"><?php echo $data["title"];?></h4>
+
+            <p class="card-text">
+                <?php echo $data["body"]; ?>
+            </p>
+
+        </div>
 
     </div>
 
