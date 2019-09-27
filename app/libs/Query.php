@@ -118,9 +118,11 @@ class Query{
 
             $results = mysqli_stmt_get_result($this->stmt);
 
+            return $results;
+
         }
 
-        return $results;
+       return false;
 
     }
 
