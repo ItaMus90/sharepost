@@ -109,4 +109,27 @@ class Posts extends BaseController {
     }
 
 
+    public function show($id){
+
+        $post = $this->post->get_post_by_id($id);
+        $data = array();
+
+        if (!$post){
+
+            $data = [
+                "post" => ""
+            ];
+
+        }else{
+
+            $data = [
+                "post" => $post
+            ];
+
+        }
+
+        $this->view("posts/show", $data);
+
+    }
+
 }

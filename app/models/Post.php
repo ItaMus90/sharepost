@@ -68,6 +68,33 @@ class Post {
 
     }
 
+    public function get_post_by_id($post_id = ""){
+
+        if (empty($post_id))
+            return false;
+
+        $arr = [
+            "s", [$post_id]
+        ];
+
+        $sql = "SELECT p.*,u.id AS user_id, u.name FROM posts AS p"
+             . " INNER JOIN users AS u"
+             . " ON p.owner_email = u.email"
+             . " WHERE p.id=?"
+             . " ORDER BY p.created_at DESC LIMIT 1";
+
+        $result = $this->db->prepare_statement_query($sql, $arr);
+
+        if ($result->num_rows <= 0){
+
+            return false;
+
+        }
+
+        return $this->db->get_assoc_arr($result);
+
+    }
+
     protected function get_user_by_id($user_id = ""){
 
         if (empty($user_id))
@@ -86,4 +113,6 @@ class Post {
         return $this->db->get_assoc_arr($result);
 
     }
+
+
 }

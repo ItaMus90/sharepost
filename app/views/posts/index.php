@@ -33,7 +33,7 @@
         <p class="card-text">
             <?php echo $post["body"]; ?>
         </p>
-        <a href="<?php echo URL_ROOT?>/posts/show/<?php echo $post["id"]; ?>" class="btn btn-dark">
+        <a href="<?php echo URL_ROOT;?>/posts/show/<?php echo $post["id"]; ?>" class="btn btn-dark">
             More
         </a>
     </div>
