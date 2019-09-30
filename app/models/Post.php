@@ -95,6 +95,30 @@ class Post {
 
     }
 
+    public function delete_post($id = ""){
+
+        if (empty($id))
+            return false;
+
+        $sql = "DELETE FROM posts WHERE id=?";
+
+        $bind_params = [
+            "s",
+            [
+                $id
+            ]
+        ];
+
+        //from insert nothing back i
+        //if the query failed i get die("SQL statement failed");
+        $is_success = $this->db->prepare_statement_query($sql, $bind_params);
+
+        //if is_success is empty string this mean the insert success else false
+
+        return $is_success == "" ? true : false;
+
+    }
+
     public function get_post_by_id($post_id = ""){
 
         if (empty($post_id))

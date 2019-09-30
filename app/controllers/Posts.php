@@ -209,6 +209,42 @@ class Posts extends BaseController {
 
     }
 
+    //delete post
+    public function delete($id = ""){
+
+        if (empty($id))
+            return false;
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST"){
+
+            //Get existing post from model
+            $post = $this->post->get_post_by_id($id);
+
+            //Check for owner
+            if ($post[0]["user_id"] != $_SESSION["user_id"]){
+
+                redirect("posts");
+
+            }
+
+            if ($this->post->delete_post($id)){
+
+                flash("post_message", "Post Removed");
+                redirect("posts");
+
+            }else{
+
+                die("Something went wrong");
+
+            }
+
+        }else{
+
+            redirect("posts");
+
+        }
+
+    }
 
     public function show($id){
 

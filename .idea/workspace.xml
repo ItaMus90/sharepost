@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2528600e-7b7e-4729-913b-a2f3935b770c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/views/posts/edit.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/Posts.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Posts.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/Post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/posts/add.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/posts/add.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/inc/navbar.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/inc/navbar.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,8 +18,8 @@
       <file leaf-file-name="Posts.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/Posts.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="154" column="44" selection-start-line="154" selection-start-column="33" selection-end-line="154" selection-end-column="44" />
+            <state relative-caret-position="394">
+              <caret line="220" column="53" selection-start-line="220" selection-start-column="53" selection-end-line="220" selection-end-column="53" />
               <folding>
                 <element signature="n#add#0;n#Posts#0;n#!!top" />
               </folding>
@@ -29,15 +27,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Post.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="navbar.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/inc/navbar.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="575">
+              <caret line="23" column="91" selection-start-line="23" selection-start-column="91" selection-end-line="23" selection-end-column="91" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Post.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/Post.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="75" column="14" selection-start-line="75" selection-start-column="14" selection-end-line="75" selection-end-column="14" />
+            <state relative-caret-position="528">
+              <caret line="107" column="19" selection-start-line="107" selection-start-column="19" selection-end-line="107" selection-end-column="19" />
               <folding>
                 <element signature="n#__construct#0;n#Post#0;n#!!top" />
                 <element signature="n#get_posts#0;n#Post#0;n#!!top" />
                 <element signature="n#add_post#0;n#Post#0;n#!!top" />
+                <element signature="n#update_post#0;n#Post#0;n#!!top" />
                 <element signature="n#get_post_by_id#0;n#Post#0;n#!!top" />
                 <element signature="n#get_user_by_id#0;n#Post#0;n#!!top" />
               </folding>
@@ -111,7 +119,6 @@
         <option value="$PROJECT_DIR$/app/init.php" />
         <option value="$PROJECT_DIR$/app/views/users/login.php" />
         <option value="$PROJECT_DIR$/public/index.php" />
-        <option value="$PROJECT_DIR$/app/views/inc/navbar.php" />
         <option value="$PROJECT_DIR$/app/controllers/Users.php" />
         <option value="$PROJECT_DIR$/app/libs/BaseController.php" />
         <option value="$PROJECT_DIR$/app/helpers/session_helper.php" />
@@ -123,10 +130,11 @@
         <option value="$PROJECT_DIR$/app/views/posts/index.php" />
         <option value="$PROJECT_DIR$/app/views/posts/show.php" />
         <option value="$PROJECT_DIR$/app/helpers/url_helper.php" />
-        <option value="$PROJECT_DIR$/app/controllers/Posts.php" />
         <option value="$PROJECT_DIR$/app/views/posts/edit.php" />
         <option value="$PROJECT_DIR$/app/views/posts/add.php" />
         <option value="$PROJECT_DIR$/app/models/Post.php" />
+        <option value="$PROJECT_DIR$/app/controllers/Posts.php" />
+        <option value="$PROJECT_DIR$/app/views/inc/navbar.php" />
       </list>
     </option>
   </component>
@@ -287,12 +295,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1567609391400</updated>
-      <workItem from="1567609392495" duration="82389000" />
+      <workItem from="1567609392495" duration="84045000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82389000" />
+    <option name="totallyTimeSpent" value="84045000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="89" y="-6" width="1831" height="1086" extended-state="6" />
@@ -436,13 +444,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/inc/navbar.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="23" column="98" selection-start-line="23" selection-start-column="98" selection-end-line="23" selection-end-column="98" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/init.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -582,27 +583,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Post.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="107" column="19" selection-start-line="107" selection-start-column="19" selection-end-line="107" selection-end-column="19" />
+          <folding>
+            <element signature="n#__construct#0;n#Post#0;n#!!top" />
+            <element signature="n#get_posts#0;n#Post#0;n#!!top" />
+            <element signature="n#add_post#0;n#Post#0;n#!!top" />
+            <element signature="n#update_post#0;n#Post#0;n#!!top" />
+            <element signature="n#get_post_by_id#0;n#Post#0;n#!!top" />
+            <element signature="n#get_user_by_id#0;n#Post#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/Posts.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="154" column="44" selection-start-line="154" selection-start-column="33" selection-end-line="154" selection-end-column="44" />
+        <state relative-caret-position="394">
+          <caret line="220" column="53" selection-start-line="220" selection-start-column="53" selection-end-line="220" selection-end-column="53" />
           <folding>
             <element signature="n#add#0;n#Posts#0;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Post.php">
+    <entry file="file://$PROJECT_DIR$/app/views/inc/navbar.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="75" column="14" selection-start-line="75" selection-start-column="14" selection-end-line="75" selection-end-column="14" />
-          <folding>
-            <element signature="n#__construct#0;n#Post#0;n#!!top" />
-            <element signature="n#get_posts#0;n#Post#0;n#!!top" />
-            <element signature="n#add_post#0;n#Post#0;n#!!top" />
-            <element signature="n#get_post_by_id#0;n#Post#0;n#!!top" />
-            <element signature="n#get_user_by_id#0;n#Post#0;n#!!top" />
-          </folding>
+        <state relative-caret-position="575">
+          <caret line="23" column="91" selection-start-line="23" selection-start-column="91" selection-end-line="23" selection-end-column="91" />
         </state>
       </provider>
     </entry>
