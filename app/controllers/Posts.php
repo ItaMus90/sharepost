@@ -33,7 +33,7 @@ class Posts extends BaseController {
 
     }
 
-
+    //add post
     public function add(){
 
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -49,7 +49,7 @@ class Posts extends BaseController {
             $data = array(
                 "title"     => trim($_POST["title"]),
                 "body"      => trim($_POST["body"]),
-                "user_id"   => "90494a710a087402677d5ea412e27bbc",//$_SESSION["user_id"],
+                "user_id"   => $_SESSION["user_id"],
                 "title_err" => "",
                 "body_err"  => ""
             );
@@ -103,6 +103,107 @@ class Posts extends BaseController {
             );
 
             $this->view('posts/add', $data);
+
+        }
+
+    }
+
+    //edit post
+    public function edit($id = ""){
+
+        if (empty($id))
+            return false;
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST"){
+
+            //Sanitize POST
+            //FILTER_SANITIZE_STRING Remove all HTML tags from a post
+            //filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
+
+            //htmlspecialchars
+
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $data = array(
+                "title"     => trim($_POST["title"]),
+                "body"      => trim($_POST["body"]),
+                "id"        => $id,
+                "user_id"   => $_SESSION["user_id"],
+                "title_err" => "",
+                "body_err"  => ""
+            );
+
+            //Validate Title
+            if (empty($data["title"])){
+
+                $data["title_err"] = "Please enter title";
+
+            }
+
+
+            //Validate Body
+            if (empty($data["body"])){
+
+                $data["body_err"] = "Please enter body text";
+
+            }
+
+
+            //Make sure no error
+            if (empty($data["title_err"]) && empty($data["body_err"])){
+
+                //Validated
+                if ($this->post->update_post($data)){
+
+                    flash("post_message", "Post Updated");
+
+                    redirect("posts");
+
+
+                }else {
+
+                    die("Something went wrong");
+
+                }
+
+            }else {
+
+                //Load the view with error
+                $this->view("posts/edit", $data);
+
+            }
+
+
+        }else {
+
+            //Get existing post from model
+            $post = $this->post->get_post_by_id($id);
+
+            if ($post){
+
+                //Check for owner
+                if ($post[0]["user_id"] != $_SESSION["user_id"]){
+
+                    redirect("posts");
+
+                }else{
+
+                    $data = array(
+                        "id" => $id,
+                        "title" => $post[0]["title"],
+                        "body" => $post[0]["body"]
+                    );
+
+                    $this->view('posts/edit', $data);
+
+
+                }
+
+            }else{
+
+                redirect("posts");
+
+            }
 
         }
 

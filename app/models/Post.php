@@ -68,6 +68,33 @@ class Post {
 
     }
 
+    public function update_post($data = array()){
+
+        if (!key($data) || empty($data))
+            return false;
+
+        $sql = "UPDATE posts SET title=?,body=? WHERE id=?";
+
+        $bind_params = [
+            "sss",
+            [
+                $data["title"],
+                $data["body"],
+                $data["id"]
+
+            ]
+        ];
+
+        //from insert nothing back i
+        //if the query failed i get die("SQL statement failed");
+        $is_success = $this->db->prepare_statement_query($sql, $bind_params);
+
+        //if is_success is empty string this mean the insert success else false
+
+        return $is_success == "" ? true : false;
+
+    }
+
     public function get_post_by_id($post_id = ""){
 
         if (empty($post_id))

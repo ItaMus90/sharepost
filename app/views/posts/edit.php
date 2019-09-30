@@ -6,9 +6,9 @@
 
 <div class="card card-body bg-light mt-5">
 
-    <h2>Add Post</h2>
+    <h2>Edit Post</h2>
     <p>Create a post with this form</p>
-    <form method="post" action="<?php echo URL_ROOT ?>/posts/add">
+    <form method="post" action="<?php echo URL_ROOT ?>/posts/edit/<?php echo $data["id"]; ?>">
 
         <div class="form-group">
             <label for="title">Title: <sup>*</sup></label>
@@ -22,7 +22,7 @@
         <div class="form-group">
             <label for="body">Body: <sup>*</sup></label>
             <textarea name="body"
-                   class="form-control form-control-lg
+                      class="form-control form-control-lg
                     <?php echo (!empty($data["body_err"])) ? 'is-invalid' : ''; ?>">
                     <?php echo $data["body"]; ?>
             </textarea>
